@@ -1,30 +1,3 @@
-/**
- * @file mylib.cpp
- * @brief Pagalbinės funkcijos studentų nuskaitymui, paskirstymui, spartos matavimui ir rezultatų spausdinimui.
- *
- * Šiame faile realizuojamos funkcijos, deklaruotos mylib.h faile:
- *
- * - Nuskaityti studentus iš tekstinio failo į @c std::vector<Studentas>:
- *   - @c NuskaitytiVector()
- * - Paskirstyti studentus į „vargšiukus“ ir „kietiakus“ pagal galutinį balą,
- *   naudojant skirtingas strategijas ir skirtingus konteinerius:
- *   - @c Paskirstymas_vector_1_strategija()
- *   - @c Paskirstymas_vector_2_strategija()
- *   - @c Paskirstymas_vector_3_strategija()
- *   - @c Paskirstymas_list_1_strategija()
- *   - @c Paskirstymas_list_2_strategija()
- *   - @c Paskirstymas_list_3_strategija()
- * - Atlikti spartos testavimą su skirtingo dydžio failais:
- *   - @c TestavimasIsFailo()
- * - Išspausdinti rezultatus į atskirus failus:
- *   - @c Spausdinimas()
- * - Vykdyti interaktyvų vartotojo sąveikos scenarijų:
- *   - @c VartotojoIvedimas()
- * - Apdoroti vieną pasirinktą failą be spartos testavimo:
- *   - @c PaprastasFailoApdorojimas()
- *
- */
-
 #include "mylib.h"
 #include "studentas.h"
 #include <fstream>
@@ -36,6 +9,8 @@
 #include <string>     
 #include <limits>   
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 vector<Studentas> NuskaitytiVector(const string& failas) {
@@ -445,4 +420,40 @@ void PaprastasFailoApdorojimas() {
     cout << "Rezultatu failai sukurti.\n";
 }
 
+// FAILŲ GENERAVIMAS
+// ============================================
 
+static void generuotiFaila(const std::string& pavadinimas, int kiek) {
+    std::ofstream fr(pavadinimas);
+    if (!fr) {
+        std::cout << "Nepavyko sukurti failo: " << pavadinimas << std::endl;
+        return;
+    }
+
+    fr << "Vardas Pavarde ND1 ND2 ND3 ND4 Egz" << std::endl;
+
+    for (int i = 1; i <= kiek; i++) {
+        fr << "Vardas" << i << " "
+           << "Pavarde" << i << " "
+           << (rand() % 10 + 1) << " "
+           << (rand() % 10 + 1) << " "
+           << (rand() % 10 + 1) << " "
+           << (rand() % 10 + 1) << " "
+           << (rand() % 10 + 1) << std::endl;
+    }
+
+    fr.close();
+    std::cout << "Failas " << pavadinimas << " sukurtas (" << kiek << " irasu)." << std::endl;
+}
+
+void GeneruotiTestiniusFailus() {
+    std::cout << "Generuojami testiniai failai..." << std::endl;
+
+    generuotiFaila("studentai.1000.txt",    1000);
+    generuotiFaila("studentai.10000.txt",   10000);
+    generuotiFaila("studentai.100000.txt",  100000);
+    generuotiFaila("studentai.1000000.txt", 1000000);
+    //generuotiFaila("studentai.10000000.txt", 10000000);
+
+    std::cout << "Failu generavimas baigtas." << std::endl;
+}
