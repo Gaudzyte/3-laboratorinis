@@ -1,4 +1,14 @@
 # Objektinis programavimas 
+## **v3.0**
+Pridėtas programos diegimo failas setup.exe. Diegimo paketas įtraukia visus reikiamus programos failus ir automatiškai sukuria nuorodas.
+
+**Įdiegimo instrukcija**
+1. Atsisiųsti setup.exe (pagal nutylėjimą, programa bus įdiegta į „C:/Program files/VU/Urtė_Gaudzytė“);
+2. Paspauskite ant atsisiųsto failo;
+3. Pažymėkite, jog norite programos vykdymo nuorodos darbalaukyje;
+4. Galiausiai spauskite "Install";
+5. Programa paruošta.
+
 ## **v2.0**
 - Sukurta dokumentacija panaudojant Doxygen.
 - Realizuota Unit Test naudojant doctest. Tikrinta:
